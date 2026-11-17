@@ -1,0 +1,29 @@
+name: 기능
+description: 새 기능이나 동작 변경을 제안합니다
+title: "feat: "
+labels: ["feat"]
+body:
+  - type: textarea
+    id: why
+    attributes:
+      label: 배경과 목적
+      description: 누가, 어떤 상황에서, 왜 필요한가
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: 원하는 동작
+      description: 끝났을 때 무엇이 되어야 하나. 잴 수 있는 수용 기준으로
+    validations:
+      required: true
+  - type: input
+    id: spec
+    attributes:
+      label: 관련 스펙
+      placeholder: specs/003-exam-room/
+  - type: textarea
+    id: out
+    attributes:
+      label: 범위 밖
+      description: 이번에 하지 않는 것

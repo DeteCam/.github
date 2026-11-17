@@ -1,0 +1,31 @@
+name: 실험·검증
+description: 시뮬레이션이나 실물 측정으로 확인할 것을 적습니다
+title: "test: "
+labels: ["experiment"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: 확인할 질문
+      description: 이 실험으로 답하려는 것 하나
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: 방법
+      description: 장소, 장비, 조건, 횟수, 쓰는 스크립트
+    validations:
+      required: true
+  - type: textarea
+    id: pass
+    attributes:
+      label: 통과 기준
+      description: 어떤 숫자가 나오면 통과인가, 실패하면 어떻게 할 것인가
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 결과
+      description: 끝난 뒤에 적습니다 (숫자, 그림, 결론)

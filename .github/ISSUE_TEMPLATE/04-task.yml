@@ -1,0 +1,20 @@
+name: 작업
+description: 스펙의 할 일(tasks.md) 한 항목이나 문서·정리 작업
+title: "chore: "
+labels: ["task"]
+body:
+  - type: textarea
+    id: todo
+    attributes:
+      label: 할 일
+    validations:
+      required: true
+  - type: input
+    id: spec
+    attributes:
+      label: 관련 스펙·항목
+      placeholder: "specs/001-direction/tasks.md 의 T3"
+  - type: textarea
+    id: done
+    attributes:
+      label: 끝났다고 보는 기준

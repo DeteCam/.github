@@ -36,7 +36,7 @@ DeteCam 은 둘레의 Wi-Fi 를 엿들어 **카메라처럼 보내는 기기를 
 
 | 상황 | 결과 |
 |---|---|
-| 40석 강의실, 패널 둘을 마주 보는 벽에 걸어 둠 | 카메라가 한 번 보내면 그 자리나 옆자리를 81~93%, 네 번 보내면 94~99% 맞힌다 (책상 위 · 가슴 · 안경) |
+| 40석 강의실, 패널 둘을 마주 보는 벽에 걸어 둠 | 카메라가 한 번 보내면 그 자리나 옆자리를 79~91%, 네 번 보내면 91~97% 맞힌다 (책상 위 · 가슴 · 안경). 창가 쪽 앞 두 줄이 가장 약하다 ([사각지대](https://github.com/DeteCam/receiver/blob/main/docs/%EC%82%AC%EA%B0%81%EC%A7%80%EB%8C%80.md)) |
 | 숙소 방 (3.6 × 5.4 m, 욕실 포함), 패널 하나 | 방 가운데에서 다섯 쪽으로 돌려 재면 숨긴 카메라와 0.26 m (가운데값), 두 곳에서 더 재면 0.21 m |
 | 실물의 흔들림을 넣어도 | 이득 2 dB, 위상 20도가 흔들려도 옆자리까지 맞힌 비율이 4점 안에서 버틴다 |
 
@@ -61,10 +61,11 @@ DeteCam 은 둘레의 Wi-Fi 를 엿들어 **카메라처럼 보내는 기기를 
 | 📱 | [**app**](https://github.com/DeteCam/app) | 안드로이드 앱: 수신기 조종, 패널 자리 등록, 의심 자리 AR 표시 | 스펙 |
 | 🧠 | [**ai**](https://github.com/DeteCam/ai) | 의심 점수 모델(카메라 가려내기), 자리 모델(물리 계산 × 배운 모델) | 스펙 · 규칙 기준선 |
 | 📚 | [**docs**](https://github.com/DeteCam/docs) | 원칙, 시스템 명세, 시스템 설계서, 조사, 검증 요약 | 계속 고침 |
+| 🗄️ | [**receiver-legacy**](https://github.com/DeteCam/receiver-legacy) | 앞선 구조(알루미늄 판을 돌려 방향을 재는 수신기)의 모든 것 | 보관 (비공개) |
 
 ## 지금 어디까지 왔나
 
-- [x] 구조를 정했다: 판을 돌리는 수신기에서 안테나 패널로 바꿈 ([설계 검토](https://github.com/DeteCam/receiver/blob/main/docs/%EC%84%A4%EA%B3%84%20%EA%B2%80%ED%86%A0.md))
+- [x] 구조를 정했다: 판을 돌리는 수신기에서 안테나 패널로 바꿈 ([설계 검토](https://github.com/DeteCam/receiver/blob/main/docs/%EC%84%A4%EA%B3%84%20%EA%B2%80%ED%86%A0.md)). 앞선 구조는 [receiver-legacy](https://github.com/DeteCam/receiver-legacy) 에 보관
 - [x] 3D 모델, 출력 파일(G코드), 조립 영상
 - [x] 부품을 사기 전의 검증: 공개된 시험 보고, 가진 기록의 분석, 흔들림을 넣은 계산 ([사전 검증](https://github.com/DeteCam/receiver/blob/main/docs/%EC%82%AC%EC%A0%84%20%EA%B2%80%EC%A6%9D.md))
 - [x] 숙소 방에서 숨긴 카메라 찾기 계산 ([숙소 방 계산](https://github.com/DeteCam/receiver/blob/main/docs/%EC%88%99%EC%86%8C%20%EB%B0%A9%20%EA%B3%84%EC%82%B0.md))
@@ -77,7 +78,7 @@ DeteCam 은 둘레의 Wi-Fi 를 엿들어 **카메라처럼 보내는 기기를 
 | 찾는다 | 찾지 못한다 (범위 밖) |
 |---|---|
 | Wi-Fi 로 영상이나 사진을 보내는 카메라. 공유기·폰 핫스팟·숨긴 네트워크 어디에 붙었든 | 저장만 하는 카메라 (SD 카드). 전파가 없다 |
-| 2.4 GHz 카메라의 자리. 5 GHz 카메라는 있는지까지 | LTE·5G 로 직접 보내는 카메라, 블루투스로 폰에 보내는 기기 (스마트 안경 등) |
+| 2.4 GHz 카메라의 자리. 5 GHz 카메라는 있는지까지 | LTE·5G 로 직접 보내는 카메라, 블루투스로 폰에 보내는 기기 (스마트 안경 등). '있다'만 알리는 확장은 [전파 넓히기 검토](https://github.com/DeteCam/docs/blob/main/research/%EC%A0%84%ED%8C%8C%20%EB%84%93%ED%9E%88%EA%B8%B0%20%EA%B2%80%ED%86%A0.md) |
 | 사진을 가끔만 보내는 카메라 (보낼 때마다 잰다) | 버튼을 누를 때만 잠깐 켜지는 카메라 |
 
 전파 방해(재밍)는 하지 않습니다. 찾고 위치를 알려 주는 데까지만 합니다.

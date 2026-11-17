@@ -13,6 +13,6 @@
   <circle cx="256" cy="322" r="58" fill="#F5F7FA"/>
   <circle cx="256" cy="322" r="30" fill="#0B1F33"/>
   <circle cx="268" cy="310" r="9" fill="#F5F7FA"/>
-  <!-- 판 (전파를 가리는 알루미늄 판) -->
+  <!-- 패널 (전파를 받는 안테나 패널) -->
   <rect x="96" y="398" width="320" height="30" rx="15" fill="#FFB020"/>
 </svg>

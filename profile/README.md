@@ -10,13 +10,13 @@
 ![앱](https://img.shields.io/badge/앱-Android_·_ARCore-3DDC84?style=flat-square&logo=android&logoColor=white)
 ![AI](https://img.shields.io/badge/AI-PyTorch_·_Sionna_RT-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 
-**[▶ 동작 영상](https://detecam.github.io/receiver/videos/)** &nbsp;·&nbsp; **[설계도](https://github.com/DeteCam/receiver/blob/main/docs/%EC%84%A4%EA%B3%84%EB%8F%84.md)** &nbsp;·&nbsp; **[데모 환경](https://github.com/DeteCam/receiver/blob/main/docs/%EB%8D%B0%EB%AA%A8%20%ED%99%98%EA%B2%BD.md)** &nbsp;·&nbsp; **[사전 검증](https://github.com/DeteCam/receiver/blob/main/docs/%EC%82%AC%EC%A0%84%20%EA%B2%80%EC%A6%9D.md)**
+**[▶ 동작 영상](https://detecam.github.io/receiver/videos/)** &nbsp;·&nbsp; **[작품 범위](https://github.com/DeteCam/receiver/blob/main/docs/%EC%9E%91%ED%92%88%20%EB%B2%94%EC%9C%84.md)** &nbsp;·&nbsp; **[설계도](https://github.com/DeteCam/receiver/blob/main/docs/%EC%84%A4%EA%B3%84%EB%8F%84.md)** &nbsp;·&nbsp; **[데모 환경](https://github.com/DeteCam/receiver/blob/main/docs/%EB%8D%B0%EB%AA%A8%20%ED%99%98%EA%B2%BD.md)** &nbsp;·&nbsp; **[사전 검증](https://github.com/DeteCam/receiver/blob/main/docs/%EC%82%AC%EC%A0%84%20%EA%B2%80%EC%A6%9D.md)**
 
 </div>
 
 ## DeteCam 은
 
-숙소의 몰래카메라, 그리고 시험지를 찍어 밖으로 보내는 초소형 카메라. 둘 다 **찍은 것을 Wi-Fi 로 내보낸다**는 점이 같습니다. 지금 파는 탐지기는 "근처에 전파가 있다"까지만 알려 주고, 어디에 있는지는 사람이 구석구석 대 봐야 압니다. 시험 중에는 그마저 할 수 없습니다.
+숙소의 몰래카메라, 그리고 시험지를 찍어 밖으로 보내는 초소형 카메라. 둘 다 **찍은 것을 Wi-Fi 로 내보낸다**는 점이 같습니다. 지금 파는 탐지기는 "근처에 전파가 있다"까지만 알려 주고, 어디에 있는지는 사람이 구석구석 대 봐야 압니다. 시험 중에는 그마저 할 수 없습니다. 시험장의 와이파이를 끊어도 카메라는 폰 핫스팟이나 LTE 로 우회하고, 전파 방해(재밍)는 법으로 막혀 있습니다. 그래서 끊지 않고 찾습니다.
 
 DeteCam 은 둘레의 Wi-Fi 를 엿들어 **카메라처럼 보내는 기기를 가려내고**, 벽에 걸어 둔 안테나 패널로 그 전파가 오는 **방향을 재서 자리를 짚고**, 그 자리를 **폰 화면 속 방 위에 겹쳐** 보여 줍니다. 모터가 없어 조용하고, 한 번 재는 데 0.3초입니다.
 
@@ -36,7 +36,7 @@ DeteCam 은 둘레의 Wi-Fi 를 엿들어 **카메라처럼 보내는 기기를 
 
 | 상황 | 결과 |
 |---|---|
-| 40석 강의실, 패널 둘을 마주 보는 벽에 걸어 둠 | 카메라가 한 번 보내면 그 자리나 옆자리를 79~91%, 네 번 보내면 91~97% 맞힌다 (책상 위 · 가슴 · 안경). 창가 쪽 앞 두 줄이 가장 약하다 ([사각지대](https://github.com/DeteCam/receiver/blob/main/docs/%EC%82%AC%EA%B0%81%EC%A7%80%EB%8C%80.md)) |
+| 40석 강의실, 패널 둘을 마주 보는 벽에 걸어 둠 | 앱이 띄우는 의심 좌석 3곳 안에 사진 4장이면 96%, 16장이면 99% 든다 (정확한 자리는 81%, 92%). 그 자리나 옆자리는 한 번 보내면 85~94%, 네 번이면 93~99% (책상 위 · 가슴 · 안경). 가장 약한 곳은 뒤쪽 창가 자리다 ([배치 계산](https://github.com/DeteCam/receiver/blob/main/docs/%EB%B0%B0%EC%B9%98%20%EA%B3%84%EC%82%B0.md)) |
 | 숙소 방 (3.6 × 5.4 m, 욕실 포함), 패널 하나 | 방 가운데에서 다섯 쪽으로 돌려 재면 숨긴 카메라와 0.26 m (가운데값), 두 곳에서 더 재면 0.21 m |
 | 실물의 흔들림을 넣어도 | 이득 2 dB, 위상 20도가 흔들려도 옆자리까지 맞힌 비율이 4점 안에서 버틴다 |
 
@@ -68,20 +68,22 @@ DeteCam 은 둘레의 Wi-Fi 를 엿들어 **카메라처럼 보내는 기기를 
 - [x] 구조를 정했다: 판을 돌리는 수신기에서 안테나 패널로 바꿈 ([설계 검토](https://github.com/DeteCam/receiver/blob/main/docs/%EC%84%A4%EA%B3%84%20%EA%B2%80%ED%86%A0.md)). 앞선 구조는 [receiver-legacy](https://github.com/DeteCam/receiver-legacy) 에 보관
 - [x] 3D 모델, 출력 파일(G코드), 조립 영상
 - [x] 부품을 사기 전의 검증: 공개된 시험 보고, 가진 기록의 분석, 흔들림을 넣은 계산 ([사전 검증](https://github.com/DeteCam/receiver/blob/main/docs/%EC%82%AC%EC%A0%84%20%EA%B2%80%EC%A6%9D.md))
+- [x] 범위를 정했다: 필수 · 권장 · 선택 · 범위 밖 ([작품 범위](https://github.com/DeteCam/receiver/blob/main/docs/%EC%9E%91%ED%92%88%20%EB%B2%94%EC%9C%84.md)). 지금 판은 2.4 GHz 용이라 5 GHz 기기는 탐지만 하고 위치 재기는 막는다
 - [x] 숙소 방에서 숨긴 카메라 찾기 계산 ([숙소 방 계산](https://github.com/DeteCam/receiver/blob/main/docs/%EC%88%99%EC%86%8C%20%EB%B0%A9%20%EA%B3%84%EC%82%B0.md))
-- [ ] 부품 관문 1~5: 싼 것부터 사서 확인하고 다음 것을 산다 (3만 → 3.6만 → 5.3만 → 15.4만 → 26.7만 원)
+- [ ] 부품 관문 1~5: 싼 것부터 사서 확인하고 다음 것을 산다 (3만 → 3.6만 → 5.3만 → 15.4만 → 26.7만 원). 권장인 관문 6 은 휴대폰 송신 경보용 RTL-SDR (6만 원)
 - [ ] 패널 장치 코드, 허브 코드, 앱, 배운 모델
 - [ ] 강의실과 숙소 방 데모
 
 ## 찾는 것과 찾지 못하는 것
 
-| 찾는다 | 찾지 못한다 (범위 밖) |
+| 범위 | 무엇 |
 |---|---|
-| Wi-Fi 로 영상이나 사진을 보내는 카메라. 공유기·폰 핫스팟·숨긴 네트워크 어디에 붙었든 | 저장만 하는 카메라 (SD 카드). 전파가 없다 |
-| 2.4 GHz 카메라의 자리. 5 GHz 카메라는 있는지까지 | LTE·5G 로 직접 보내는 카메라, 블루투스로 폰에 보내는 기기 (스마트 안경 등). '있다'만 알리는 확장은 [전파 넓히기 검토](https://github.com/DeteCam/docs/blob/main/research/%EC%A0%84%ED%8C%8C%20%EB%84%93%ED%9E%88%EA%B8%B0%20%EA%B2%80%ED%86%A0.md) |
-| 사진을 가끔만 보내는 카메라 (보낼 때마다 잰다) | 버튼을 누를 때만 잠깐 켜지는 카메라 |
+| **필수** | Wi-Fi 로 사진이나 영상을 보내는 카메라 전부 (사진을 간간이 보내든, 실시간으로 보내든, 버튼을 누를 때만 보내든). 공공 와이파이 · 폰 핫스팟 · 카메라 자체 AP · 숨긴 네트워크 어디에 붙었든 탐지 → 카메라 판별 → 자리 → AR 표시. 5 GHz 카메라는 탐지만 하고 위치 재기는 막는다 (지금 판으로 재면 엉뚱한 자리가 나온다) |
+| **권장** | 허브에 RTL-SDR 을 꽂아 교실 안 휴대폰의 LTE 송신을 알린다. 블루투스 · LTE 로 우회하는 경우의 일부를 덮는다. 자리는 모른다 |
+| **선택** | 두 대역 판으로 5 GHz 카메라의 자리까지 |
+| **범위 밖** | 전파 방해(재밍), 통신 내용 풀기, LTE · 5G · 블루투스 기기의 자리, 저장만 하는 카메라 (SD 카드), 유선 · 자기 유도 이어폰 |
 
-전파 방해(재밍)는 하지 않습니다. 찾고 위치를 알려 주는 데까지만 합니다.
+까닭과 지금 설계로 되는지는 [작품 범위](https://github.com/DeteCam/receiver/blob/main/docs/%EC%9E%91%ED%92%88%20%EB%B2%94%EC%9C%84.md)에 있습니다.
 
 ## 함께 만드는 방식
 

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#10304F"/><stop offset="1" stop-color="#07182A"/></linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- 전파 (카메라가 내보내는 Wi-Fi) -->
+  <g fill="none" stroke="#19C2B0" stroke-width="26" stroke-linecap="round">
+    <path d="M 256 300 m -84 -84 a 119 119 0 0 1 168 0" />
+    <path d="M 256 300 m -139 -139 a 197 197 0 0 1 278 0" opacity="0.75"/>
+    <path d="M 256 300 m -194 -194 a 275 275 0 0 1 388 0" opacity="0.45"/>
+  </g>
+  <!-- 렌즈 -->
+  <circle cx="256" cy="322" r="58" fill="#F5F7FA"/>
+  <circle cx="256" cy="322" r="30" fill="#0B1F33"/>
+  <circle cx="268" cy="310" r="9" fill="#F5F7FA"/>
+  <!-- 패널 (전파를 받는 안테나 패널) -->
+  <rect x="96" y="398" width="320" height="30" rx="15" fill="#FFB020"/>
+</svg>

@@ -1,22 +1,31 @@
-<p align="center">
-  <img src="assets/banner.png" alt="DeteCam 6.0 Nano-2 AI" width="760">
-</p>
+# DeteCam — WiFi 송출형 초소형 카메라 탐지 및 위치 추정
 
-# DeteCam 6.0 (`Nano-2 AI`) — 초소형 포켓 단 2기 + Physics-Informed AI 불법카메라 탐지 시스템
+한국공학대학교 컴퓨터공학 졸업작품입니다. 방 안의 여러 전자기기 가운데 WiFi로 영상을 보내는 숨은 카메라만 골라내고, 그 방향을 스마트폰 AR로 보여 주는 것이 목표입니다.
 
-> **v4.0 (42 cm 3기 · 84만 원) → v5.0 (12 cm 3기 · 46.7만 원) → v6.0 `Nano-2 AI` (9.6 cm 포켓 크기 단 2기 · 100% 신품 34.6만 원 · PyTorch AI + 가상 거울 앵커로 3기 초월!)**
+## 목표
 
-## 핵심 혁신 4가지
-1. **초소형 포켓 크기 단 2기 (`96×96×36 mm`, 220 g/기)**: 84×84 mm 4층 통합 RF PCB (`d_min=20.1 mm < λ/2 @ 5.85 GHz` → 5 GHz 그레이팅 로브 0%) + 무개조 `FriendlyElec NanoPi R5C` (0.8T NPU) + `Intel AX210NGW` + 무타공 자석·나노겔 2축 벽면 스위블. 2기 전체가 코트 주머니에 수납되며 **Bambu X1C 단 2판(8시간, 250 g, 서포트 0%)**으로 출력.
-2. **하드웨어 축소를 AI로 초월 (`ReconCovNet-v4` + Bayesian `MA-PINN` + `ΔP_12`)**: 10대 다양한 실공간(L자 코너·목욕탕 기둥·화장실·금속 사물함·40석 교실·150석 강당·통유리·과밀 기숙사) 3D 광선추적 검증에서 **단 2기 `Nano-2 AI`**가 **5.22 GHz P90 `0.54 m` (≤1m `96.4%`, 미학습 `0.64 m`, 사각지대 NLoS `0.63 m`)**로 기존 3기 고전 시스템(`0.84 m / 미학습 1.86 m / NLoS 1.90 m`)을 압도!
-3. **전자기기 속 카메라만 정밀 식별 (`CamGuard-Net` + 5초 `CamLoPA`)**: 암호화 패킷 1D-CNN+Self-Attention에 5초 조명/손짓 인과 자극을 융합해 라이브 방송·클라우드 백업 하드 네거티브 800대 평가에서 **F1 `98.88%` · 재현율 `99.00%` · 오경보 `1.25%`** 달성 (`0.12 ms`).
-4. **비전문가 15초 최적 배치 (`AR-OPA-2` + `Auto-Verify` + `RAPS 90%`)**: 5초 AR 스캔으로 직선+가상 거울 가시성을 동시 최적화해 2기 벽면 위치·15° 클릭 각도를 추천하고 3초 상호 교정 후 90% 신뢰 AR 구역을 표시.
-
-## 저장소 구성
-| 저장소 | 역할 |
+| 목표 | 합격 기준 (실측) |
 |---|---|
-| [`DeteCam/docs`](https://github.com/DeteCam/docs) | 주제 설명서, 종합 기술검증 보고서(10공간·AI·CAD), `DeteCam 6.0` 발표자료(`.pptx`) 및 슬라이드 가이드 |
-| [`DeteCam/receiver`](https://github.com/DeteCam/receiver) | `96 mm` 포켓 CAD·STL·Bambu X1C G-code, 10공간 3D 광선추적, PyTorch 학습·추론 펌웨어(`pytest 6/6`), 3D 조립/동작 영상 |
-| [`DeteCam/ai`](https://github.com/DeteCam/ai) | `ReconCovNet-v4`, `CamGuard-Net`, Bayesian `MA-PINN`, `AR-OPA-2`, `RAPS` 알고리즘 설계서 및 사양 |
-| [`DeteCam/app`](https://github.com/DeteCam/app) | `AR-OPA-2` 2기 벽면 가이드, 0원 보행 융합, 가상 거울·`RAPS 90%` AR 표시 앱 API 계약 및 사양 |
-| [`DeteCam/receiver-legacy`](https://github.com/DeteCam/receiver-legacy) | 구형 42 cm 대형 스탠드(v4.0) 아카이브 *(읽기 전용 보존)* |
+| 카메라만 골라내기 | 재현율 95% 이상, 오탐률 5% 이하 (실제 기기, 기기 단위로 나눠 평가) |
+| 방향 오차 줄이기 | 사람이 많고 반사가 있는 방에서, 같은 날 같은 자리에서 잰 DiffLoc 재현보다 평균 방향 오차 3° 이상 작게 |
+| AR 표시 | 의심 구역이 실제 카메라를 포함하는 비율 90% 이상 |
+
+제약: 움직이는 부품 없음(소음 없음) · 부품 값 70만 원 미만 · 사용자가 돌아다니지 않음 · PCB 외주 없음 · 쇼핑몰 기성품 · 사기 전에 검증.
+
+## 현재 방향 — 움직이지 않는 스위치 고리 수신기
+
+- 지름 9~10 cm 원 위에 막대 안테나 8개를 세우고 기성 RF 스위치 모듈로 번갈아 연결합니다. 기준 안테나 1개와 함께 Intel AX210의 두 수신 단자로 받아 패킷마다 생기는 위상 오차를 지웁니다.
+- 정확도는 소프트웨어 · AI로 올립니다: 벽 · 천장 반사를 넣은 방향 추정, 위치를 아는 송신기로 하는 현장 보정, 신뢰도로 못 믿을 측정 거르기, 실제 트래픽으로 학습하는 카메라 판별.
+- 아직 실측 결과는 없습니다. 지금까지의 숫자는 모두 시뮬레이션이며, 설계 선택의 근거로만 씁니다.
+
+## 저장소
+
+| 저장소 | 담는 것 |
+|---|---|
+| [docs](https://github.com/DeteCam/docs) | 작업 기준서 `AGENTS.md`, 원칙, 시스템 스펙, 주제 설명서, 구매 부품 목록, 기술 검증 보고서 |
+| [receiver](https://github.com/DeteCam/receiver) | 스위치 고리 수신기 스펙, 시뮬레이션 코드(`sim/`). 지난 v6 설계는 `archive/v6-nano2` 브랜치에 보관 |
+| [ai](https://github.com/DeteCam/ai) | 카메라 판별, 반사를 반영한 방향 추정 스펙과 설계 |
+| [app](https://github.com/DeteCam/app) | 수신기 조종과 AR 표시 앱 스펙, 주소 계약 |
+| [receiver-legacy](https://github.com/DeteCam/receiver-legacy) | 구형 42 cm 스탠드(v4) 보관 *(읽기 전용)* |
+
+작업 규칙은 [CONTRIBUTING.md](https://github.com/DeteCam/.github/blob/main/CONTRIBUTING.md)와 [AGENTS.md](https://github.com/DeteCam/docs/blob/main/AGENTS.md)를 따릅니다.
